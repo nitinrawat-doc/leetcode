@@ -1,0 +1,46 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int>result;
+        int minr=0;
+        int maxr=matrix.size()-1;
+        int minc=0;
+        
+        int maxc=matrix[0].size()-1;
+        int tne=(maxr+1)*(maxc+1);
+        int count=0;
+        while(count<tne){
+            for(int j=minc;j<=maxc&&count<tne;j++){
+                result.push_back(matrix[minr][j]);
+                count++;
+
+
+            }
+            minr++;
+            for(int i=minr;i<=maxr&&count<tne;i++){
+                result.push_back(matrix[i][maxc]);
+                count++;
+
+
+
+            }
+            maxc--;
+            for(int j=maxc;j>=minc&&count<tne;j--){
+                result.push_back(matrix[maxr][j]);
+                count++;
+            }
+            maxr--;
+            for(int i=maxr;i>=minr&&count<tne;i--){
+                result.push_back(matrix[i][minc]);
+                count++;
+            }
+            minc++;
+
+        }
+        return result;
+
+
+        
+        
+    }
+};
