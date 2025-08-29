@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        vector<vector<int>> v(n, vector<int>(n, 0)); 
+        int minr = 0, maxr = n - 1;
+        int minc = 0, maxc = n - 1;
+        int count = 0, tne = n * n;
+
+        while (count < tne) {
+            for (int j = minc; j <= maxc && count < tne; j++) {
+                v[minr][j] = ++count;
+            }
+            minr++;
+
+            for (int i = minr; i <= maxr && count < tne; i++) {
+                v[i][maxc] = ++count;
+            }
+            maxc--;
+            for (int j = maxc; j >= minc && count < tne; j--) {
+                v[maxr][j] = ++count;
+            }
+            maxr--;
+
+            for (int i = maxr; i >= minr && count < tne; i--) {
+                v[i][minc] = ++count;
+            }
+            minc++;
+        }
+
+        return v;
+    }
+};
