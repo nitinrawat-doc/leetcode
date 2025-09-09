@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> findMissingAndRepeatedValues(vector<vector<int>>& grid) {
+        unordered_set<int> s;
+        int repeat = -1;
+        int missing = -1;
+        for (int i = 0; i < grid.size(); i++) {
+            for (int j = 0; j < grid[0].size(); j++) {
+                if (s.find(grid[i][j]) != s.end()) {
+                    repeat = grid[i][j];
+                } else {
+                    s.insert(grid[i][j]);
+                }
+            }
+        }
+        for (int i = 1; i <= grid.size() * grid.size(); i++) {
+            if (s.find(i) == s.end()) {
+                missing = i;
+                break;
+            }
+        }
+        return {repeat, missing};
+    }
+};
